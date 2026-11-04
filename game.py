@@ -54,6 +54,8 @@ class Game:
             
         pr.end_mode_2d()
 
+        
+        # GUI
         pr.draw_text("Game?", 10, 10, 20, pr.RED)
         pr.draw_text(f"player x: {self.player.position.x:.2f}", 10, 30, 20, pr.RED)
         pr.draw_text(f"player y: {self.player.position.y:.2f}", 10, 50, 20, pr.RED)
