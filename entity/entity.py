@@ -1,4 +1,5 @@
-﻿from enum import Enum
+﻿import pyray as pr
+from enum import Enum
 
 class State(Enum):
     STATIC = "static"
@@ -10,20 +11,20 @@ class Entity:
         x: float,
         y: float,
         height: int,
-        speed: int,
-        state: State = State.DYNAMIC,
+        speed: float,
+        state: State = State.STATIC,
     ):
-        self.x = x
-        self.y = y
-        self.velocity_x = 0
-        self.velocity_y = 0
+        self.position = pr.Vector2(x, y)
+        self.velocity = pr.Vector2(0, 0)
         self.height = height
+        self.speed = speed
         self.state = state
-        self.SPEED = speed
+        
+        if not isinstance(state, State):
+            raise TypeError(f"state must be in enum State, received : {state!r}")
 
     def update(self, dt: float):
-        match self.state:
-            case State.STATIC:
-                pass
-            case State.DYNAMIC:
-                pass
+        if self.state == State.DYNAMIC:
+            self.position.x += self.velocity.x * dt
+            self.position.y += self.velocity.y * dt
+

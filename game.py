@@ -14,13 +14,12 @@ class Game:
             x= 0,
             y= 0,
             height= 20,
-            speed= 50,
-            state= State.DYNAMIC,
+            speed= 200,
         )
         self.entities.append(self.player)
 
         self.camera = pr.Camera2D()
-        self.camera.target = pr.Vector2(self.player.x, self.player.y)
+        self.camera.target = pr.Vector2(self.player.position.x, self.player.position.y)
         self.camera.offset = pr.Vector2(
             self.screen_width / 2,
             self.screen_height / 2,
@@ -33,7 +32,7 @@ class Game:
             entity.update(dt)
 
         # follow the player
-        self.camera.target = pr.Vector2(self.player.x, self.player.y)
+        self.camera.target = pr.Vector2(self.player.position.x, self.player.position.y)
 
     def draw(self, bg_color):
         
@@ -56,7 +55,7 @@ class Game:
         pr.end_mode_2d()
 
         pr.draw_text("Game?", 10, 10, 20, pr.RED)
-        pr.draw_text(f"player x:{self.player.x}", 10, 30, 20, pr.RED)
-        pr.draw_text(f"player x:{self.player.y}", 10, 50, 20, pr.RED)
+        pr.draw_text(f"player x:{self.player.position.x}", 10, 30, 20, pr.RED)
+        pr.draw_text(f"player x:{self.player.position.y}", 10, 50, 20, pr.RED)
 
         pr.end_drawing()
