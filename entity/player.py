@@ -14,18 +14,19 @@ class Player(Entity):
 
     def update(self, dt: float):
         direction = pr.Vector2(0, 0)
-
+        self.temp_speed = self.speed
         if pr.is_key_down(pr.KEY_D): direction.x += 1 # type: ignore
         if pr.is_key_down(pr.KEY_A): direction.x -= 1 # type: ignore
         if pr.is_key_down(pr.KEY_S): direction.y += 1 # type: ignore
         if pr.is_key_down(pr.KEY_W): direction.y -= 1 # type: ignore
+        if pr.is_key_down(pr.KEY_LEFT_SHIFT): self.temp_speed *= 1.5 # type: ignore
 
         if pr.vector2_length(direction) > 0:
             direction = pr.vector2_normalize(direction)
 
         self.velocity = pr.Vector2(
-            direction.x * self.speed,
-            direction.y * self.speed,
+            direction.x * self.temp_speed,
+            direction.y * self.temp_speed,
         )
 
         super().update(dt)
