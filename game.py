@@ -30,7 +30,7 @@ class Game:
     def update(self, dt: float):
         for entity in self.entities:
             entity.update(dt)
-
+        
         # follow the player
         self.camera.target = pr.Vector2(self.player.position.x, self.player.position.y)
 
@@ -55,7 +55,7 @@ class Game:
         pr.end_mode_2d()
 
         pr.draw_text("Game?", 10, 10, 20, pr.RED)
-        pr.draw_text(f"player x:{self.player.position.x}", 10, 30, 20, pr.RED)
-        pr.draw_text(f"player x:{self.player.position.y}", 10, 50, 20, pr.RED)
+        pr.draw_text(f"player x: {self.player.position.x:.2f}", 10, 30, 20, pr.RED)
+        pr.draw_text(f"player y: {self.player.position.y:.2f}", 10, 50, 20, pr.RED)
 
         pr.end_drawing()
