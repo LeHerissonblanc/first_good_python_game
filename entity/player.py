@@ -16,4 +16,4 @@ class Player(Entity):
         self.y +=  self.velocity_y
         
     def draw(self):
-        pr.draw_circle(int(self.x), int(self.y), 20, pr.RED)
+        pr.draw_circle(int(self.x), int(self.y), self.height, pr.RED)

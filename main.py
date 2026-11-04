@@ -5,6 +5,7 @@ SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 BG_COLOR = pr.RAYWHITE
 
+pr.set_config_flags(pr.FLAG_MSAA_4X_HINT) # type: ignore
 pr.init_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Game?")
 pr.set_target_fps(60)
 
