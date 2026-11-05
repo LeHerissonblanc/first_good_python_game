@@ -8,6 +8,7 @@ class Game:
         self.screen_height = screen_height
         self.cell_size = cell_size
 
+        # init all entities
         self.entities = []
 
         self.player = Player(
@@ -21,12 +22,15 @@ class Game:
         self.box = Entity(
             x= cell_size * 2,
             y= cell_size * 3,
-            size= pr.Vector2(self.cell_size*10, self.cell_size*5),
+            size= pr.Vector2(self.cell_size*10, self.cell_size*10),
             color= pr.DARKGRAY,
+            shape= Shape.RECT,
             state= State.STATIC
         )
         self.entities.append(self.box)
 
+
+        # camera
         self.camera = pr.Camera2D()
         self.camera.target = pr.Vector2(self.player.position.x, self.player.position.y)
         self.camera.offset = pr.Vector2(

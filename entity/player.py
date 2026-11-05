@@ -7,7 +7,7 @@ class Player(Entity):
         super().__init__(
             x= x,
             y= y,
-            size= pr.Vector2(10,10),
+            size= pr.Vector2(30, 30),
             speed= speed,
             state= State.DYNAMIC,
             shape= Shape.CIRCLE
@@ -31,11 +31,3 @@ class Player(Entity):
         )
 
         super().update(dt)
-
-    def draw(self):
-        pr.draw_circle(
-            int(self.position.x),
-            int(self.position.y),
-            self.size.x,
-            pr.RED,
-        )

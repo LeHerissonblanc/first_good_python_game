@@ -58,5 +58,6 @@ class Entity:
                     int(self.size.y),
                     self.color
                 )
-                
+            case _:
+                raise TypeError(f'{self} has no shape')
 
