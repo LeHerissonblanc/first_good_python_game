@@ -14,7 +14,8 @@ class Game:
         self.player = Player(
             x= 0,
             y= 0,
-            size= pr.Vector2(10,10),
+            size= pr.Vector2(30,30),
+            color= pr.SKYBLUE,
             speed= 200,
         )
         self.entities.append(self.player)

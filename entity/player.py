@@ -3,12 +3,13 @@ from entity.entity import Entity, State, Shape
 
 
 class Player(Entity):
-    def __init__(self, x: float, y: float, speed: float, size = pr.Vector2(10,10)):
+    def __init__(self, x: float, y: float, speed: float,color: pr.Color, size = pr.Vector2(10,10)):
         super().__init__(
             x= x,
             y= y,
-            size= pr.Vector2(30, 30),
+            size= size,
             speed= speed,
+            color= color,
             state= State.DYNAMIC,
             shape= Shape.CIRCLE
         )

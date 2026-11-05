@@ -60,4 +60,3 @@ class Entity:
                 )
             case _:
                 raise TypeError(f'{self} has no shape')
-
