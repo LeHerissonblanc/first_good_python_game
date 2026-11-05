@@ -3,9 +3,10 @@ from entity.player import Player
 from entity.entity import Entity, State, Shape
 
 class Game:
-    def __init__(self, screen_width, screen_height):
+    def __init__(self, screen_width, screen_height, cell_size = 50):
         self.screen_width = screen_width
         self.screen_height = screen_height
+        self.cell_size = cell_size
 
         self.entities = []
 
@@ -18,10 +19,10 @@ class Game:
         self.entities.append(self.player)
         
         self.box = Entity(
-            x= 50,
-            y= 100,
-            size= pr.Vector2(50, 50),
-            color= pr.BLUE,
+            x= cell_size * 2,
+            y= cell_size * 3,
+            size= pr.Vector2(self.cell_size*10, self.cell_size*5),
+            color= pr.DARKGRAY,
             state= State.STATIC
         )
         self.entities.append(self.box)
@@ -51,10 +52,10 @@ class Game:
         pr.begin_mode_2d(self.camera)
         
         # Grille du monde
-        for x in range(-5000, 5001, 50):
+        for x in range(-5000, 5001, self.cell_size):
             pr.draw_line(x, -5000, x, 5000, pr.LIGHTGRAY)
 
-        for y in range(-5000, 5001, 50):
+        for y in range(-5000, 5001, self.cell_size):
             pr.draw_line(-5000, y, 5000, y, pr.LIGHTGRAY)
         
         for entity in self.entities:
