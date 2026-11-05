@@ -1,15 +1,16 @@
 ﻿import pyray as pr
-from entity.entity import Entity, State
+from entity.entity import Entity, State, Shape
 
 
 class Player(Entity):
-    def __init__(self, x: float, y: float, height: int, speed: float):
+    def __init__(self, x: float, y: float, speed: float, size = pr.Vector2(10,10)):
         super().__init__(
-            x=x,
-            y=y,
-            height=height,
-            speed=speed,
-            state=State.DYNAMIC,
+            x= x,
+            y= y,
+            size= pr.Vector2(10,10),
+            speed= speed,
+            state= State.DYNAMIC,
+            shape= Shape.CIRCLE
         )
 
     def update(self, dt: float):
@@ -35,6 +36,6 @@ class Player(Entity):
         pr.draw_circle(
             int(self.position.x),
             int(self.position.y),
-            self.height,
+            self.size.x,
             pr.RED,
         )
