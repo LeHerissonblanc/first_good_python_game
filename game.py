@@ -23,7 +23,7 @@ class Game:
         self.box = Entity(
             x= cell_size * 2,
             y= cell_size * 3,
-            size= pr.Vector2(self.cell_size*10, self.cell_size*10),
+            size= pr.Vector2(self.cell_size*10, self.cell_size*5),
             color= pr.DARKGRAY,
             shape= Shape.RECT,
             state= State.STATIC
