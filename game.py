@@ -1,6 +1,7 @@
 import pyray as pr  # type: ignore
 from entity.player import Player
 from entity.entity import Entity, State, Shape
+from math import floor, ceil
 
 class Game:
     def __init__(self, screen_width, screen_height, cell_size = 50):
@@ -56,12 +57,12 @@ class Game:
 
         pr.begin_mode_2d(self.camera)
         
-        # Grille du monde
+        # World grid
         for x in range(-5000, 5001, self.cell_size):
             pr.draw_line(x, -5000, x, 5000, pr.LIGHTGRAY)
-
         for y in range(-5000, 5001, self.cell_size):
             pr.draw_line(-5000, y, 5000, y, pr.LIGHTGRAY)
+        pr.draw_rectangle_lines(-5000, -5000, 10_000, 10_000, pr.RED)
         
         for entity in self.entities:
             entity.draw()
