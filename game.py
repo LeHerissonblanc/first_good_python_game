@@ -23,7 +23,7 @@ class Game:
         self.player = Player(
             x= 0,
             y= 0,
-            size= pr.Vector2(30,30),
+            size= pr.Vector2(35,35),
             color= pr.SKYBLUE,
             speed= 200,
         )
