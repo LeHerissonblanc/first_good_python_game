@@ -1,9 +1,17 @@
 import pyray as pr  # type: ignore
 from entity.player import Player
 from entity.entity import Entity, State, Shape
-from math import floor, ceil
 
 class Game:
+    
+    def draw_gui(self, dt):
+        pr.draw_text("Game?", 10, 10, 20, pr.RED)
+        pr.draw_text(f"player x: {self.player.position.x:.2f}", 10, 30, 20, pr.RED)
+        pr.draw_text(f"player y: {self.player.position.y:.2f}", 10, 50, 20, pr.RED)
+        pr.draw_text(f"player speed: {self.player.speed}", 10, 70, 20, pr.RED)
+        pr.draw_text(f"player temp speed: {self.player.temp_speed}", 10, 90, 20, pr.RED)
+        pr.draw_text(f"dt: {dt}", 10, 110, 20, pr.RED)
+    
     def __init__(self, screen_width, screen_height, cell_size = 50):
         self.screen_width = screen_width
         self.screen_height = screen_height
@@ -110,13 +118,6 @@ class Game:
             
         pr.end_mode_2d()
 
-        
-        # GUI
-        pr.draw_text("Game?", 10, 10, 20, pr.RED)
-        pr.draw_text(f"player x: {self.player.position.x:.2f}", 10, 30, 20, pr.RED)
-        pr.draw_text(f"player y: {self.player.position.y:.2f}", 10, 50, 20, pr.RED)
-        pr.draw_text(f"player speed: {self.player.speed}", 10, 70, 20, pr.RED)
-        pr.draw_text(f"player temp speed: {self.player.temp_speed}", 10, 90, 20, pr.RED)
-        pr.draw_text(f"dt: {dt}", 10, 110, 20, pr.RED)
+        self.draw_gui(dt)
 
         pr.end_drawing()

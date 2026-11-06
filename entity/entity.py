@@ -42,21 +42,30 @@ class Entity:
         match self.shape:
             case Shape.CIRCLE:
                 if self.size.x == self.size.y:
+                    radius = self.size.x / 2
+
                     pr.draw_circle(
                         int(self.position.x),
                         int(self.position.y),
-                        self.size.x / 2,
-                        self.color
+                        radius,
+                        self.color,
+                    )
+                    pr.draw_circle_lines_ex(
+                        self.position,
+                        radius,
+                        3,
+                        pr.BLACK,
                     )
                 else:
                     raise TypeError("size x and size y must be equal for the circles")
             case Shape.RECT:
-                pr.draw_rectangle(
-                    int(self.position.x),
-                    int(self.position.y),
-                    int(self.size.x),
-                    int(self.size.y),
-                    self.color
+                rect = pr.Rectangle(
+                    self.position.x,
+                    self.position.y,
+                    self.size.x,
+                    self.size.y,
                 )
+                pr.draw_rectangle_rec(rect, self.color)
+                pr.draw_rectangle_lines_ex(rect, 3, pr.BLACK)
             case _:
                 raise TypeError(f'{self} has no shape')
