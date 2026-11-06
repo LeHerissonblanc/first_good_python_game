@@ -6,17 +6,21 @@ SCREEN_HEIGHT = 600
 BG_COLOR = pr.RAYWHITE
 FPS = 60
 
-pr.set_config_flags(pr.FLAG_MSAA_4X_HINT) # type: ignore
-pr.init_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Game?")
-pr.set_target_fps(FPS)
+def main():
+    pr.set_config_flags(pr.FLAG_MSAA_4X_HINT) # type: ignore
+    pr.init_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Game?")
+    pr.set_target_fps(FPS)
 
-game = Game(SCREEN_WIDTH, SCREEN_HEIGHT, cell_size= 50)
+    game = Game(SCREEN_WIDTH, SCREEN_HEIGHT, cell_size= 50)
 
-while not pr.window_should_close():
+    while not pr.window_should_close():
 
-    dt = pr.get_frame_time()
-    
-    game.update(dt)
-    game.draw(BG_COLOR)
+        dt = pr.get_frame_time()
+        
+        game.update(dt)
+        game.draw(dt, BG_COLOR)
 
-pr.close_window()
+    pr.close_window()
+
+if __name__ == "__main__":
+    main()

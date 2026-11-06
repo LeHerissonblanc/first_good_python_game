@@ -44,12 +44,53 @@ class Game:
 
     def update(self, dt: float):
         for entity in self.entities:
-            entity.update(dt)
+            if not entity == self.player:
+                entity.update(dt)
+            
+        old_x = self.player.position.x
+        old_y = self.player.position.y
+
+        self.player.update(dt)
+
+        new_x = self.player.position.x
+        new_y = self.player.position.y
+        radius = self.player.size.x / 2
+
+        # first: x collision ; second: y collision
+        for obstacle in self.entities:
+            if obstacle is self.player or obstacle.state != State.STATIC:
+                continue
+
+            obstacle_rect = pr.Rectangle(
+                obstacle.position.x,
+                obstacle.position.y,
+                obstacle.size.x,
+                obstacle.size.y,
+            )
+
+            # x move
+            if pr.check_collision_circle_rec(
+                pr.Vector2(new_x, old_y),
+                radius,
+                obstacle_rect,
+            ):
+                new_x = old_x
+
+            # y move
+            if pr.check_collision_circle_rec(
+                pr.Vector2(new_x, new_y),
+                radius,
+                obstacle_rect,
+            ):
+                new_y = old_y
+
+        self.player.position.x = new_x
+        self.player.position.y = new_y
         
         # follow the player
         self.camera.target = pr.Vector2(self.player.position.x, self.player.position.y)
 
-    def draw(self, bg_color):
+    def draw(self, dt, bg_color):
         
         pr.begin_drawing()
         
@@ -76,5 +117,6 @@ class Game:
         pr.draw_text(f"player y: {self.player.position.y:.2f}", 10, 50, 20, pr.RED)
         pr.draw_text(f"player speed: {self.player.speed}", 10, 70, 20, pr.RED)
         pr.draw_text(f"player temp speed: {self.player.temp_speed}", 10, 90, 20, pr.RED)
+        pr.draw_text(f"dt: {dt}", 10, 110, 20, pr.RED)
 
         pr.end_drawing()
