@@ -1,9 +1,8 @@
 ﻿import pyray as pr
 from entity.entity import Entity, State, Shape
 
-
 class Player(Entity):
-    def __init__(self, x: float, y: float, speed: float,color: pr.Color, size = pr.Vector2(10,10)):
+    def __init__(self, x: float, y: float, speed: float,color: pr.Color, size = pr.Vector2(35,35)):
         super().__init__(
             x= x,
             y= y,
@@ -13,6 +12,7 @@ class Player(Entity):
             state= State.DYNAMIC,
             shape= Shape.CIRCLE
         )
+        self.direction = pr.Vector2(0, 0)
 
     def update(self, dt: float):
         direction = pr.Vector2(0, 0)
@@ -26,6 +26,8 @@ class Player(Entity):
 
         if pr.vector2_length(direction) > 0:
             direction = pr.vector2_normalize(direction)
+
+        self.direction = direction
 
         self.velocity = pr.Vector2(
             direction.x * self.temp_speed,

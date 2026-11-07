@@ -1,6 +1,7 @@
 import pyray as pr
-from entity.player import Player
 from entity.entity import Entity, State, Shape
+from entity.player import Player
+from entity.enemy import Enemy
 
 class Game:
 
@@ -35,7 +36,14 @@ class Game:
             color= pr.SKYBLUE,
             speed= 200,
         )
-        self.entities.append(self.player)
+
+        self.enemy = Enemy(
+            x=200, 
+            y=200, 
+            speed=100, 
+            color=pr.RED, 
+            target= self.player
+        )
         
         self.box = Entity(
             x= cell_size * 2,
@@ -45,9 +53,11 @@ class Game:
             shape= Shape.RECT,
             state= State.STATIC
         )
+
+        self.entities.append(self.player)
+        self.entities.append(self.enemy)
         self.entities.append(self.box)
-
-
+        
         # camera
         self.camera = pr.Camera2D()
         self.camera.target = pr.Vector2(self.player.position.x, self.player.position.y)
