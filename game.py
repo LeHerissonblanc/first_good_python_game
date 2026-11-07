@@ -1,21 +1,29 @@
-import pyray as pr  # type: ignore
+import pyray as pr
 from entity.player import Player
 from entity.entity import Entity, State, Shape
 
 class Game:
-    
+
+    def display_info(self, text: str, value = None, color: pr.Color = pr.RED):
+        self.y_gui_offset += 20
+        pr.draw_text(f"{text} {value}", 10, self.y_gui_offset, 20, color)
+        
     def draw_gui(self, dt):
-        pr.draw_text("Game?", 10, 10, 20, pr.RED)
-        pr.draw_text(f"player x: {self.player.position.x:.2f}", 10, 30, 20, pr.RED)
-        pr.draw_text(f"player y: {self.player.position.y:.2f}", 10, 50, 20, pr.RED)
-        pr.draw_text(f"player speed: {self.player.speed}", 10, 70, 20, pr.RED)
-        pr.draw_text(f"player temp speed: {self.player.temp_speed}", 10, 90, 20, pr.RED)
-        pr.draw_text(f"dt: {dt}", 10, 110, 20, pr.RED)
+        self.y_gui_offset = 0
+        self.display_info("Game?")
+        self.display_info("player x:", f"{self.player.position.x:.2f}")
+        self.display_info("player y:", f"{self.player.position.y:.2f}")
+        self.display_info("player speed:", self.player.speed)
+        self.display_info("player temp speed:", self.player.temp_speed)
+        self.display_info("dt:", dt)
+        self.display_info("camera x:", f"{(self.camera.target.x + self.camera.offset.x):.2f}" )
+        self.display_info("camera y:", f"{(self.camera.target.y + self.camera.offset.y):.2f}" )
     
     def __init__(self, screen_width, screen_height, cell_size = 50):
         self.screen_width = screen_width
         self.screen_height = screen_height
         self.cell_size = cell_size
+        self.y_gui_offset = 0
 
         # init all entities
         self.entities = []
