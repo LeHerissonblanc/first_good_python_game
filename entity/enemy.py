@@ -2,15 +2,24 @@ import pyray as pr
 from entity.entity import Entity, State, Shape
 
 class Enemy(Entity):
-    def __init__(self, x, y, speed, color, target):
+    def __init__(
+        self, 
+        x,
+        y, 
+        speed,
+        color, 
+        target, 
+        state=State.DYNAMIC, 
+        shape=Shape.CIRCLE
+    ):
         super().__init__(
             x=x,
             y=y,
             size=pr.Vector2(35, 35),
             speed=speed,
             color=color,
-            state=State.DYNAMIC,
-            shape=Shape.CIRCLE
+            state=state,
+            shape=shape
         )
         self.target = target
 

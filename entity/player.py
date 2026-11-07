@@ -2,7 +2,14 @@
 from entity.entity import Entity, State, Shape
 
 class Player(Entity):
-    def __init__(self, x: float, y: float, speed: float,color: pr.Color, size = pr.Vector2(35,35)):
+    def __init__(
+        self, 
+        x: float, 
+        y: float, 
+        speed: float,
+        color: pr.Color,
+        size = pr.Vector2(35,35)
+    ):
         super().__init__(
             x= x,
             y= y,
